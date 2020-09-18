@@ -28,5 +28,6 @@ namespace Aukro.ViewModel
         {
             executeMethod(parameter);
         }
+
     }
 }

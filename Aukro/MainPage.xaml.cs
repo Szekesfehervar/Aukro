@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aukro.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,12 @@ namespace Aukro
         public MainPage()
         {
             this.InitializeComponent();
+            MainViewModel mainPage = new MainViewModel();
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

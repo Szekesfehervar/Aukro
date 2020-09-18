@@ -57,7 +57,7 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Cena"></TextBlock>
             <TextBox HorizontalAlignment="Left" Margin="5" Text="{Binding Item.Price, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}" Width="160"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Konec aukce"></TextBlock>
-            <DatePicker Margin="5" DayFormat="{}{day.integer}" MonthFormat="{}{month.integer}" YearFormat="{}{year.abbreviated}"/>
+            <!--<DatePicker Margin="5" DayFormat="{}{day.integer}" MonthFormat="{}{month.integer}" YearFormat="{}{year.abbreviated}"/>-->
             <Button Content="Přidat" Command="{Binding ModelAdd}" IsEnabled="{Binding Item.Buttonenable}"/>
         </StackPanel>
 
@@ -72,23 +72,8 @@
 
         </StackPanel>
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding Item.Table, Mode=OneWay}" Grid.RowSpan="11">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*" MinWidth="150"/>
-                            <ColumnDefinition Width="*" MinWidth="150"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14" Width="Auto" Height="Auto"/>
-
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TextBox Grid.Row="0" Text="{Binding Item.Table, Mode=OneWay}" Grid.RowSpan="11" IsEnabled="False">
+        </TextBox>
     </Grid>
 </Page>
 

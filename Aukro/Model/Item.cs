@@ -51,16 +51,17 @@ namespace Aukro.Model
 
 
 
-        Dictionary<string, List<string>> Advertisment = new Dictionary<string, List<string>>();
+        Dictionary<string, List<string>> Advertisments = new Dictionary<string, List<string>>();
         Dictionary<string, string> Users = new Dictionary<string, string>();
 
-        public void Login()
+        public async void Login()
         {
             if (Users.ContainsKey(Nickname) == true)
             {
                 if (Password == (Users[Nickname]).ToString())
                 {
                     var dialog = new MessageDialog("Jste přihlášený", "Login");
+                    await dialog.ShowAsync();
                     Loged = true;
                     Buttonenable = true;
                     Password = null;
@@ -69,33 +70,38 @@ namespace Aukro.Model
                 else
                 {
                     var dialog = new MessageDialog("Nesprávné jméno nebo heslo", "Přihlašování");
+                    await dialog.ShowAsync();
                 }
             }
             else
             {
                 var dialog = new MessageDialog("Nesprávné jméno nebo heslo", "Přihlašování");
+                await dialog.ShowAsync();
             }
         }
 
-        public void Buy()
+        public async void Buy()
         {
-            if (Advertisment.ContainsKey(Name) == true)
+            if (Advertisments.ContainsKey(Name) == true)
             {
-                if (Convert.ToInt32(Advertisment[Name][2]) < Price)
+                if (Convert.ToInt32(Advertisments[Name][2]) < Price)
                 {
-                    Advertisment.Remove(Name);
+                    Advertisments.Remove(Name);
                     LastBid = Price;
                     LastName = Name;
                     var Dialog = new MessageDialog("Úspěšně jste zakoupil", "Inzeráty");
+                    await Dialog.ShowAsync();
                 }
                 else
                 {
                     var Dialog = new MessageDialog("Částka je příliš nízká pro koupení", "Inzeráty");
+                    await Dialog.ShowAsync();
                 }
             }
             else
             {
                 var Dialog = new MessageDialog("Nesprávné jméno nebo heslo", "Přihlašování");
+                await Dialog.ShowAsync();
             }
         }
         public void LogOut()
@@ -105,55 +111,63 @@ namespace Aukro.Model
             TextBoxEnable = true;
         }
 
-        public void Registration()
+        public async void Registration()
         {
             if (Users.ContainsKey(Nickname) == false)
             {
                 Users.Add(Nickname, Password);
-                var Dialog = new MessageDialog("Jste úspěšně zaregistrován", "Registrace");
+                var dialog = new MessageDialog("Jste úspěšně zaregistrován", "Registrace");
+                await dialog.ShowAsync();
             }
             else
             {
                 var Dialog = new MessageDialog("Uživatelské jméno je již obsazeno", "Registrace");
+                await Dialog.ShowAsync();
             }
         }
 
-        public void AddAdvertisment()
+        public async void AddAdvertisment()
         {
-            if (Advertisment.ContainsKey(Name) == false)
+            if (Advertisments.ContainsKey(Name) == false)
             {
-                Advertisment.Add(Name, new List<string>(new string[] { Description, Lasted.ToString(), Price.ToString() }));
+                Advertisments.Add(Name, new List<string>(new string[] { Description, Lasted.ToString(), Price.ToString() }));              
                 var Dialog = new MessageDialog("Váš inzerát byl přidán", "Inzeráty");
+                await Dialog.ShowAsync();
+
             }
             else
             {
                 var Dialog = new MessageDialog("Název je již obsazen, zkuste jiný", "Inzeráty");
+                await Dialog.ShowAsync();
             }
         }
 
-        public void Bid()
+        public async void Bid()
         {
-            if (Advertisment.ContainsKey(Name) == true)
+            if (Advertisments.ContainsKey(Name) == true)
             {
-                if (Convert.ToInt32(Advertisment[Name][2]) < Price)
+                if (Convert.ToInt32(Advertisments[Name][2]) < Price)
                 {
-                    Advertisment[Name][2] = Price.ToString();
+                    Advertisments[Name][2] = Price.ToString();
                     var Dialog = new MessageDialog("Úspěšně jste přihodil", "Inzeráty");
+                    await Dialog.ShowAsync();
                 }
                 else
                 {
                     var Dialog = new MessageDialog("Částka je příliš nízká pro přihození", "Inzeráty");
+                    await Dialog.ShowAsync();
                 }
             }
             else
             {
                 var Dialog = new MessageDialog("Název se neshoduje s žádným inzerátem", "Inzeráty");
+                await Dialog.ShowAsync();
             }
         }
 
         public void Refresh()
         {
-            var lines = Advertisment.Select(kv => "Název: " + kv.Key + "Popisek: " + kv.Value[0].ToString() + "Hodnota: " + kv.Value[2].ToString());
+            var lines = Advertisments.Select(kv => "Název: " + kv.Key + "Popisek: " + kv.Value[0].ToString() + "Hodnota: " + kv.Value[2].ToString());
             Table = string.Join(Environment.NewLine, lines);
         }
 
@@ -165,7 +179,7 @@ namespace Aukro.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

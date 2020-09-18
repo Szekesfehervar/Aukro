@@ -16,6 +16,7 @@ namespace Aukro.ViewModel
         public RelayCommand ModelBid { get; set; }
         public RelayCommand ModelLogout { get; set; }
         public RelayCommand ModelBuy { get; set; }
+        public ObservableCollection<Item> ItemList { get; set; }
         //public ObservableCollection<Item> Items { get { return _items; } set { _items = value; NotifyPropertyChanged(); } }
         //public Item SelectedItem { get { return _selectedItem; } set { _selectedItem = value; NotifyPropertyChanged(); } }
         //public int SelectedItemIndex { get { return _selectedItemsIndex + 1; } set { _selectedItemsIndex = value; NotifyPropertyChanged(); Remove.RaiseCanExecuteChanged(); } }
@@ -35,6 +36,7 @@ namespace Aukro.ViewModel
             ModelBid = new RelayCommand(Bid, canExecuteMethod);
             ModelLogout = new RelayCommand(Logout, canExecuteMethod);
             ModelBuy = new RelayCommand(Buy, canExecuteMethod);
+            ItemList = new ObservableCollection<Item>();
 
             //Items.Add(new Item { Name = "Volant na loď", Description = "Je teplejsdfkjsahfdkuazdkjahiuldzakjdhfalisudzakljsdhaliuedzalisjchbalkjhgzdfkluahflkauwzeakjcsakljszdrakludhakjdh", Price = 5 }); ;
 
