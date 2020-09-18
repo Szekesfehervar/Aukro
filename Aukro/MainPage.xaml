@@ -1,0 +1,86 @@
+﻿<Page
+    x:Class="Aukro.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Aukro"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="using:Aukro.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewmodel:MainViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="3">
+            <TextBlock HorizontalAlignment="Center" Text="Login" TextWrapping="Wrap" Margin="5"/>
+            <TextBlock HorizontalAlignment="Left" Text="Nickname" TextWrapping="Wrap" Margin="5"/>
+            <TextBox x:Name="TextBox_Name" HorizontalAlignment="Stretch" Margin="5" Text="{Binding Item.Nickname, Mode=TwoWay}" TextWrapping="Wrap" IsEnabled="{Binding Item.TextBoxEnable}">
+                
+                
+            </TextBox>
+                <TextBlock HorizontalAlignment="Left" Text="Password" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" Text="{Binding Item.Password, Mode=TwoWay}" TextWrapping="Wrap" IsEnabled="{Binding Item.TextBoxEnable}"/>
+            <Button Content="Přihlásit se" HorizontalAlignment="Left" Margin="10"  Width="185" Height="30" IsEnabled="{Binding Informace.TextboxEnable}" Command="{Binding ModelLogin}"/>
+            <Button Content="Zaregistrovat se" HorizontalAlignment="Left" Margin="10"  Width="185" Height="30" IsEnabled="{Binding Informace.TextboxEnable}" Command="{Binding ModelRegistation}"/>
+
+            <!--<TextBlock HorizontalAlignment="Center" Text="SignUp" TextWrapping="Wrap" Margin="5"/>
+            <TextBlock HorizontalAlignment="Left" Text="Nickname" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Text="{Binding SelectedStudent.Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Left" Text="Password" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" Text="{Binding SelectedStudent.Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Left" Text="Password Again" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" Text="{Binding SelectedStudent.Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Left" Text="Email" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" Text="{Binding SelectedStudent.Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Left" Text="Gender" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" SelectedItem="{Binding SelectedStudent.Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Genders}"/>
+            <Button Content="Signup" HorizontalAlignment="Right" Margin="10"/>-->
+
+
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Margin="5" Text="Přidání itemu"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Nadpis"></TextBlock>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Text="{Binding Item.Name, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Popis"></TextBlock>
+
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Text="{Binding Item.Description, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}"/>
+
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Cena"></TextBlock>
+            <TextBox HorizontalAlignment="Left" Margin="5" Text="{Binding Item.Price, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}" Width="160"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Konec aukce"></TextBlock>
+            <DatePicker Margin="5" DayFormat="{}{day.integer}" MonthFormat="{}{month.integer}" YearFormat="{}{year.abbreviated}"/>
+            <Button Content="Přidat" Command="{Binding ModelAdd}" IsEnabled="{Binding Item.Buttonenable}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+
+        </StackPanel>
+
+        <ListBox Grid.Row="0" ItemsSource="{Binding Item.Table, Mode=OneWay}" Grid.RowSpan="11">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*" MinWidth="150"/>
+                            <ColumnDefinition Width="*" MinWidth="150"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" FontSize="14" Width="Auto" Height="Auto"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>
+
