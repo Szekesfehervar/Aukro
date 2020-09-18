@@ -75,7 +75,6 @@ namespace Aukro.Model
             {
                 var dialog = new MessageDialog("Nesprávné jméno nebo heslo", "Přihlašování");
             }
-
         }
 
         public void Buy()

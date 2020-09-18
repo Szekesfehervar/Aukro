@@ -31,6 +31,7 @@
             <TextBox HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" Text="{Binding Item.Password, Mode=TwoWay}" TextWrapping="Wrap" IsEnabled="{Binding Item.TextBoxEnable}"/>
             <Button Content="Přihlásit se" HorizontalAlignment="Left" Margin="10"  Width="185" Height="30" IsEnabled="{Binding Informace.TextboxEnable}" Command="{Binding ModelLogin}"/>
             <Button Content="Zaregistrovat se" HorizontalAlignment="Left" Margin="10"  Width="185" Height="30" IsEnabled="{Binding Informace.TextboxEnable}" Command="{Binding ModelRegistation}"/>
+            <Button Content="Odhlásit se" HorizontalAlignment="Left" Margin="10"  Width="185" Height="30" IsEnabled="{Binding Informace.TextboxEnable}" Command="{Binding ModelLogout}"/>
 
             <!--<TextBlock HorizontalAlignment="Center" Text="SignUp" TextWrapping="Wrap" Margin="5"/>
             <TextBlock HorizontalAlignment="Left" Text="Nickname" TextWrapping="Wrap" Margin="5"/>
@@ -51,7 +52,7 @@
             <TextBox HorizontalAlignment="Stretch" Margin="5" Text="{Binding Item.Name, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Popis"></TextBlock>
 
-            <TextBox HorizontalAlignment="Stretch" Margin="5" Text="{Binding Item.Description, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}"/>
+            <TextBox HorizontalAlignment="Stretch" Margin="5" Height="80" Text="{Binding Item.Description, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}"/>
 
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="Cena"></TextBlock>
             <TextBox HorizontalAlignment="Left" Margin="5" Text="{Binding Item.Price, Mode=TwoWay}" IsEnabled="{Binding Item.Buttonenable}" Width="160"/>
@@ -61,6 +62,13 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" Text="Přihazování" TextWrapping="Wrap" Margin="5"/>
+            <TextBlock HorizontalAlignment="Left" Text="Přihazování" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding Item.Name, Mode=TwoWay}" TextWrapping="Wrap" Margin="5" Width="250"/>
+            <TextBlock HorizontalAlignment="Left" Text="Hodnota" TextWrapping="Wrap" Margin="5"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding Item.LastBid, Mode=TwoWay}" TextWrapping="Wrap" Margin="5" Width="250"/>
+            <Button Content="Koupit" Command="{Binding ModelBuy}" IsEnabled="{Binding Item.Buttonenable}" Margin="5"/>
+            <Button Content="Přihodit" Command="{Binding ModelBid}" IsEnabled="{Binding Item.Buttonenable}" Margin="5"/>
 
         </StackPanel>
 
